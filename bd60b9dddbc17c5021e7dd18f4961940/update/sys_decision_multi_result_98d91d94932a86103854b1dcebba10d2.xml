@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_multi_result">
+    <sys_decision_multi_result action="INSERT_OR_UPDATE">
+        <decision_table display_value="API Scanner">09985990932a86103854b1dcebba1075</decision_table>
+        <label>API List: ScannerTable</label>
+        <result_elements/>
+        <sys_class_name>sys_decision_multi_result</sys_class_name>
+        <sys_created_by>pgd</sys_created_by>
+        <sys_created_on>2024-05-29 12:15:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>98d91d94932a86103854b1dcebba10d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>API List: ScannerTable</sys_name>
+        <sys_package display_value="Discode" source="x_s4bv_discode">bd60b9dddbc17c5021e7dd18f4961940</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Discode">bd60b9dddbc17c5021e7dd18f4961940</sys_scope>
+        <sys_update_name>sys_decision_multi_result_98d91d94932a86103854b1dcebba10d2</sys_update_name>
+        <sys_updated_by>pgd</sys_updated_by>
+        <sys_updated_on>2024-05-29 12:15:33</sys_updated_on>
+    </sys_decision_multi_result>
+    <sys_variable_value action="delete_multiple" query="document_key=98d91d94932a86103854b1dcebba10d2"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_decision_multi_result</document>
+        <document_key>98d91d94932a86103854b1dcebba10d2</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>pgd</sys_created_by>
+        <sys_created_on>2024-05-29 12:15:33</sys_created_on>
+        <sys_id>98d91d94932a86103854b1dcebba10d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>pgd</sys_updated_by>
+        <sys_updated_on>2024-05-29 12:15:33</sys_updated_on>
+        <value>ScannerTable</value>
+        <variable display_value="API List">4cd91d94932a86103854b1dcebba108e</variable>
+    </sys_variable_value>
+</record_update>

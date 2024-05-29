@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sn_decision_table_decision_condition">
+    <sn_decision_table_decision_condition action="INSERT_OR_UPDATE">
+        <decision_input display_value="Table Name">33c951d0932a86103854b1dcebba106d</decision_input>
+        <decision_table display_value="API Scanner">09985990932a86103854b1dcebba1075</decision_table>
+        <default_operator>=</default_operator>
+        <description/>
+        <field/>
+        <field_label/>
+        <field_parent_table/>
+        <label>Table Name</label>
+        <order>100</order>
+        <parent/>
+        <reference/>
+        <sys_class_name>sn_decision_table_decision_condition</sys_class_name>
+        <sys_created_by>pgd</sys_created_by>
+        <sys_created_on>2024-05-29 12:15:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>1cd91d94932a86103854b1dcebba10cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Discode" source="x_s4bv_discode">bd60b9dddbc17c5021e7dd18f4961940</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Discode">bd60b9dddbc17c5021e7dd18f4961940</sys_scope>
+        <sys_update_name>sn_decision_table_decision_condition_1cd91d94932a86103854b1dcebba10cd</sys_update_name>
+        <sys_updated_by>pgd</sys_updated_by>
+        <sys_updated_on>2024-05-29 12:15:33</sys_updated_on>
+        <type display_value="String">747127c1bf3320001875647fcf0739e0</type>
+    </sn_decision_table_decision_condition>
+</record_update>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_question">
+    <sys_decision_question action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>9cd91d94932a86103854b1dcebba10d6</answer>
+        <condition table="var__m_sys_decision_input_09985990932a86103854b1dcebba1075">u_table_name=sys_ui_action^EQ<item endquery="false" field="u_table_name" goto="false" newquery="false" operator="=" or="false" value="sys_ui_action"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <decision_table display_value="API Scanner">09985990932a86103854b1dcebba1075</decision_table>
+        <default_answer>false</default_answer>
+        <input_table>var__m_sys_decision_input_09985990932a86103854b1dcebba1075</input_table>
+        <label>API Scanner_400</label>
+        <marked_for_deletion>false</marked_for_deletion>
+        <order>400</order>
+        <sys_class_name>sys_decision_question</sys_class_name>
+        <sys_created_by>pgd</sys_created_by>
+        <sys_created_on>2024-05-29 12:15:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a4d95d94932a86103854b1dcebba104a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>API Scanner_400</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Discode" source="x_s4bv_discode">bd60b9dddbc17c5021e7dd18f4961940</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Discode">bd60b9dddbc17c5021e7dd18f4961940</sys_scope>
+        <sys_update_name>sys_decision_question_a4d95d94932a86103854b1dcebba104a</sys_update_name>
+        <sys_updated_by>pgd</sys_updated_by>
+        <sys_updated_on>2024-05-29 12:15:34</sys_updated_on>
+    </sys_decision_question>
+</record_update>
