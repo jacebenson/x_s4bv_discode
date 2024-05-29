@@ -9,13 +9,13 @@
         <name>ScanEngineBase</name>
         <script><![CDATA[var ScanEngineBase = Class.create();
 ScanEngineBase.prototype = Object.extendsObject(Core, {
-    initialize: function () {},
+    initialize: function() {},
 
     /**
      * scanAllApplications will execute the scanners for all applications provided in the property
      * @returns object with results
      */
-    scanAllApplications: function () {
+    scanAllApplications: function() {
         return this._scanAllApplications();
     },
 
@@ -24,7 +24,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {String} strScopeName 
      * @returns object with results
      */
-    scanApplication: function (strScopeName) {
+    scanApplication: function(strScopeName) {
         return this._scanApplication(strScopeName);
     },
 
@@ -33,7 +33,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {GlideRecord} grFile record being scanned
      * @returns object summary of scan result
      */
-    scanApplicationFile: function (grFile) {
+    scanApplicationFile: function(grFile) {
         return this._scanApplicationFile(grFile);
     },
 
@@ -44,7 +44,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {String} strApiName Name of the API which is going to do the scanning
      * @returns instantiated class of the named API string, ready to run OR... null
      */
-    _getSourceScanner: function (grSource, strApiName) {
+    _getSourceScanner: function(grSource, strApiName) {
         if (!grSource || !strApiName || !x_s4bv_discode[strApiName]) return;
 
         var api = new x_s4bv_discode[strApiName](grSource, 'source');
@@ -59,7 +59,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @returns object of the result
      * an object is lovely because we can expand it, or whatever...
      */
-    _scanAllApplications: function () {
+    _scanAllApplications: function() {
         var arrApplicationList = this.arrApplicationList || this._getArrSourceApplications();
         var objResult = {};
         var iRunScanCount = 0;
@@ -78,7 +78,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * in the specified properties, limited by the scope∏
      * @returns object summary of scan result
      */
-    _scanApplication: function (strScopeName) {
+    _scanApplication: function(strScopeName) {
         try {
             var obj = {
                 'application_name': strScopeName
@@ -124,7 +124,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {GlideRecord} grFile record being scanned
      * @returns object summary of scan result
      */
-     _scanApplicationFile: function (grFile) {
+    _scanApplicationFile: function(grFile) {
         try {
             var obj = {};
             if (!grFile || !grFile.isValidRecord()) {
@@ -144,7 +144,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
             obj.file_name = grFile.getDisplayValue();
             obj.file_table_name = strTableName;
             obj.file_sys_id = grFile.getUniqueValue();
-            
+
             if (!this._canScanTable(strTableName)) {
                 obj.result = 'Error';
                 obj.msg = 'File type is not supported.';
@@ -181,7 +181,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {Integer} iApiCount count of API executions
      * @returns iApiCount
      */
-    _scanFile: function (grFile, arrApiNames, iApiCount) {
+    _scanFile: function(grFile, arrApiNames, iApiCount) {
         if (!grFile || !grFile.isValidRecord() || !arrApiNames) return false;
         iApiCount = iApiCount || 0;
         for (var iApi in arrApiNames) {
@@ -199,7 +199,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * 
      * @returns array of the applications which will be targeted in the scan
      */
-    _getArrSourceApplications: function () {
+    _getArrSourceApplications: function() {
         var strApplicationList = gs.getProperty(this.C_PROP_SCAN_SOURCE_APPLICATIONS, '');
         if (!strApplicationList) return;
         var arrApplicationList = strApplicationList.split(',') || [];
@@ -211,7 +211,7 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * 
      * @returns object result containing the table based on property settings
      */
-    _getObjSourceTableTargets: function () {
+    _getObjSourceTableTargets: function() {
         var arrSourceTableList = this.arrSourceTableList || this._getArrSourceTableList();
         var obj = {};
         for (var iTable in arrSourceTableList) {
@@ -228,28 +228,35 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
      * @param {String} strTableName name of table provided to get an array of scanner Api names
      * @returns 
      */
-    _getArrScannerApiNamesForTable: function (strTableName) {
+    _getArrScannerApiNamesForTable: function(strTableName) {
+        /*
         var strPropertyPrefix = this.C_PROP_PREFIX_API_SCAN_SOURCE || '';
         var strTargetScanners = gs.getProperty(strPropertyPrefix + strTableName, '');
+		*/
+        var dt = new sn_dt.DecisionTableAPI();
+        var objInputs = {};
+        objInputs['u_table_name'] = strTableName;
+        var objResponse = dt.getDecision(this.C_ID_DECISION_TABLE_API_SCANNERS, objInputs);
+        var strTargetScanners = objResponse.result_elements.u_api_list;
         if (!strTargetScanners) return [];
         return strTargetScanners.split(',');
     },
 
 
-        /**
+    /**
      * _logScan will create a syslog entry, if the specified verbosity is greater than system property
      * @param {String} msg Intro Message to be logged as a prefix
      * @param {Object} obj JSON of this Object will be printed to logs
      * @param {Integer} level Verbosity of the log entry
      * @returns 
      */
-         _logScan: function (msg, obj, level /* optional */ ) {
-            level = level || 0;
-            if (gs.getProperty(this.C_PROP_SCAN_LOG_VERBOSITY, 0) < level) return;
-            msg = msg || '';
-            obj = obj || {};
-            gs.info(gs.getMessage('{0}: {1}', [msg, JSON.stringify(obj)])); // TODO: improve logging
-        },
+    _logScan: function(msg, obj, level /* optional */ ) {
+        level = level || 0;
+        if (gs.getProperty(this.C_PROP_SCAN_LOG_VERBOSITY, 0) < level) return;
+        msg = msg || '';
+        obj = obj || {};
+        gs.info(gs.getMessage('{0}: {1}', [msg, JSON.stringify(obj)])); // TODO: improve logging
+    },
 
 
     type: 'ScanEngineBase'
@@ -258,13 +265,13 @@ ScanEngineBase.prototype = Object.extendsObject(Core, {
         <sys_created_by>w.geek6</sys_created_by>
         <sys_created_on>2021-08-21 22:27:08</sys_created_on>
         <sys_id>40ec77ee07027c50be01f03c7c1ed0f4</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>ScanEngineBase</sys_name>
         <sys_package display_value="Discode" source="x_s4bv_discode">bd60b9dddbc17c5021e7dd18f4961940</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Discode">bd60b9dddbc17c5021e7dd18f4961940</sys_scope>
         <sys_update_name>sys_script_include_40ec77ee07027c50be01f03c7c1ed0f4</sys_update_name>
-        <sys_updated_by>w.geek6</sys_updated_by>
-        <sys_updated_on>2021-09-14 20:45:01</sys_updated_on>
+        <sys_updated_by>pgd</sys_updated_by>
+        <sys_updated_on>2024-05-29 12:25:14</sys_updated_on>
     </sys_script_include>
 </record_update>
